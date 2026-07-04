@@ -15,7 +15,7 @@ public class EmployeeMapper {
                          employee.getLastName()
         );
     }
-
+// methods
     public static Employee employeeMap(EmployeeDto employeeDto)
     {
         return new Employee(

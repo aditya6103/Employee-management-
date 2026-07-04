@@ -6,4 +6,5 @@ public interface EmployeeService {
 
     EmployeeDto createEmployee(EmployeeDto employeeDto);
 
+    EmployeeDto fetchByIdService(Long id);
 }

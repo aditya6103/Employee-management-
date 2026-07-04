@@ -6,17 +6,17 @@ import com.wozo.employee_management.entity.Employee;
 
 public class EmployeeMapper {
 
-    public static EmployeeDto employeeDtoMap(Employee employee)
+    public static EmployeeDto mapToEmployeeDto(Employee employee)
     {
         return new EmployeeDto(
                          employee.getId(),
-                         employee.getEmail(),
                          employee.getFirstName(),
-                         employee.getLastName()
+                         employee.getLastName(),
+                         employee.getEmail()
         );
     }
 // methods
-    public static Employee employeeMap(EmployeeDto employeeDto)
+    public static Employee mapToEmployee(EmployeeDto employeeDto)
     {
         return new Employee(
                 employeeDto.getId(),

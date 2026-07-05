@@ -12,5 +12,7 @@ public interface EmployeeService {
 
     List<EmployeeDto> fetchAllEmployeeService();
 
+    EmployeeDto updateEmployeeService(Long id,EmployeeDto updatedEmployeeDto );
+
 
 }

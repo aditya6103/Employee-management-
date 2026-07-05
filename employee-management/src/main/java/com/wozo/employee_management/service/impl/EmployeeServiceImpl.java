@@ -9,7 +9,10 @@ import com.wozo.employee_management.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -34,6 +37,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return EmployeeMapper.mapToEmployeeDto(employee);
     }
+
+    @Override
+    public List<EmployeeDto> fetchAllEmployeeService() {
+
+        List<EmployeeDto> employeeDtos= new ArrayList<>();
+
+        List<Employee> all = employeeRepository.findAll();
+
+        List<EmployeeDto> collect = all.stream()
+                .map(EmployeeMapper::mapToEmployeeDto)
+                .collect(Collectors.toList());
+        return collect;
+
+
+
+    }
+
 
 
 }

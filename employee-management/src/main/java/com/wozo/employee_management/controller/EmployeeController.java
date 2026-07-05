@@ -3,6 +3,7 @@ package com.wozo.employee_management.controller;
 
 import com.wozo.employee_management.dto.EmployeeDto;
 import com.wozo.employee_management.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @PostMapping("/createEmployee")
-    public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody EmployeeDto employeeDto)
+    public ResponseEntity<EmployeeDto> saveEmployee(@Valid @RequestBody EmployeeDto employeeDto)
     {
 
         EmployeeDto savedEmployee=employeeService.createEmployee(employeeDto);

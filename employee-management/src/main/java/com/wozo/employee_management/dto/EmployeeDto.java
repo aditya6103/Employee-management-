@@ -27,7 +27,7 @@ public class EmployeeDto {
         private String lastName;
 
         @Email
-        @NotBlank(message = "Email is required")
+        @NotBlank(message = "Email should be correct")
         private String email;
 
 

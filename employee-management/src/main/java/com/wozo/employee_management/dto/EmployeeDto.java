@@ -30,5 +30,7 @@ public class EmployeeDto {
         @NotBlank(message = "Email should be correct")
         private String email;
 
+        private Long departmentId;
+
 
 }

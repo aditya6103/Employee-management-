@@ -18,7 +18,7 @@ public class EmployeeController {
 
     EmployeeService employeeService;
 
-    @PostMapping("/createEmployee")
+    @PostMapping("/Employees")
     public ResponseEntity<EmployeeDto> saveEmployee(@Valid @RequestBody EmployeeDto employeeDto)
     {
 
@@ -28,7 +28,7 @@ public class EmployeeController {
     }
 
 
-    @GetMapping("getEmployee/{id}")
+    @GetMapping("/Employees/{id}")
     public ResponseEntity<EmployeeDto> fetchByIdController(@PathVariable Long id)
     {
         EmployeeDto employeeDto = employeeService.fetchByIdService(id);
@@ -36,7 +36,7 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeDto,HttpStatus.OK);
     }
 
-    @GetMapping("Get/AllEmployee")
+    @GetMapping("/Employees")
     public ResponseEntity<List<EmployeeDto>> fetchAllEmployeeController()
     {
         List<EmployeeDto> employeeDtos = employeeService.fetchAllEmployeeService();
@@ -45,7 +45,7 @@ public class EmployeeController {
 
     }
 
-    @PutMapping("updated/Employee/{id}")
+    @PutMapping("/Employees/{id}")
     public ResponseEntity<EmployeeDto> updateEmployeeController(@PathVariable Long id,@RequestBody EmployeeDto updatedEmployee)
     {
         EmployeeDto employeeDto = employeeService.updateEmployeeService(id, updatedEmployee);
@@ -53,7 +53,7 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeDto,HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/Employee/{id}")
+    @DeleteMapping("/Employees/{id}")
     public ResponseEntity<Long> deleteEmployeeByID(@PathVariable Long id)
     {
         employeeService.deleteEmployee(id);

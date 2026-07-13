@@ -1,10 +1,11 @@
 package com.wozo.employee_management.controller;
 
-
+import org.springframework.data.domain.Page;
 import com.wozo.employee_management.dto.EmployeeDto;
 import com.wozo.employee_management.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +38,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/Employees")
-    public ResponseEntity<List<EmployeeDto>> fetchAllEmployeeController()
+    public ResponseEntity<Page<EmployeeDto>> fetchAllEmployeeController(@RequestParam int page, @RequestParam int size,@RequestParam String sortBy,@RequestParam String sortDir)
     {
-        List<EmployeeDto> employeeDtos = employeeService.fetchAllEmployeeService();
 
-        return new ResponseEntity<>(employeeDtos,HttpStatus.OK);
+        Page<EmployeeDto> page1 = employeeService.fetchAllEmployeeService(page,size,sortBy,sortDir);
+
+        return new ResponseEntity<>(page1,HttpStatus.OK);
 
     }
 

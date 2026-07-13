@@ -9,7 +9,12 @@ import com.wozo.employee_management.repository.DepartmentRepository;
 import com.wozo.employee_management.repository.EmployeeRepository;
 import com.wozo.employee_management.service.EmployeeService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,29 +49,42 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     }
-
+    @Transactional
     @Override
     public EmployeeDto fetchByIdService(Long id) {
 
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("id is not found" + "id is " + id));
 
+        System.out.println(employee.getDepartment().getDepartmentName());
+
         return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
     @Override
-    public List<EmployeeDto> fetchAllEmployeeService() {
+    public Page<EmployeeDto> fetchAllEmployeeService(int page,int size,String sortBy,String sortDir) {
 
-        List<EmployeeDto> employeeDtos = new ArrayList<>();
+      //  List<Employee> all = employeeRepository.findAll();
+        Sort sort;
 
-        List<Employee> all = employeeRepository.findAll();
+        if(sortDir.equalsIgnoreCase("asc"))
+        {
+          sort=Sort.by(sortBy);
+        }
+        else
+        {
+         sort=Sort.by(sortBy).descending();
+        }
 
-        List<EmployeeDto> collect = all.stream()
-                .map(EmployeeMapper::mapToEmployeeDto)
-                .collect(Collectors.toList());
-        return collect;
+        Pageable pageable= PageRequest.of(page,size,sort);
+        Page<Employee> all = employeeRepository.findAll(pageable);
+
+
+        return all.map(EmployeeMapper::mapToEmployeeDto);
 
 
     }
+
+
 
     @Override
     public EmployeeDto updateEmployeeService(Long id, EmployeeDto updatedEmployeeDto) {

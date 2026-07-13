@@ -1,6 +1,7 @@
 package com.wozo.employee_management.service;
 
 import com.wozo.employee_management.dto.EmployeeDto;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface EmployeeService {
 
     EmployeeDto fetchByIdService(Long id);
 
-    List<EmployeeDto> fetchAllEmployeeService();
+    Page<EmployeeDto> fetchAllEmployeeService(int page,int size,String sortBy,String sortDir);
 
     EmployeeDto updateEmployeeService(Long id,EmployeeDto updatedEmployeeDto );
 

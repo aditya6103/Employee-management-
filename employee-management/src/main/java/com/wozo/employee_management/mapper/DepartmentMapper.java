@@ -27,7 +27,8 @@ public class DepartmentMapper {
                 departmentDto.getId(),
                 departmentDto.getDepartmentName(),
                 departmentDto.getDepartmentCode(),
-                departmentDto.getDepartmentDescription()
+                departmentDto.getDepartmentDescription(),
+                null
 
 
         );

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,5 +29,7 @@ public class Department {
     @Column(length = 500)
     private String departmentDescription;
 
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
 }
